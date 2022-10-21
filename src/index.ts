@@ -1,4 +1,4 @@
-import mdx from '@mdx-js/mdx'
+import { compile } from '@mdx-js/mdx'
 import { build, transformSync } from 'esbuild'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -14,7 +14,7 @@ const esBuildMDXPlugin = ({ content }) => ({
         contents: `
         import React from "react";
         import { mdx } from "@mdx-js/react";
-        ${await mdx(content)}
+        ${await compile(content)}
         `,
         loader: 'jsx'
       }
